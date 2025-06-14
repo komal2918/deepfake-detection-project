@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Exclude duplicate/unnecessary model files (keep only the 3 required ones)
+models/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Git
+.git/
