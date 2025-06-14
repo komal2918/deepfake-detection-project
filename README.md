@@ -283,7 +283,7 @@ This project is designed for educational and research purposes. If you use this 
 
 ## 📞 Support
 
-- 📧 Email: your.email@example.com
+- 📧 Email: komalbishnoi87@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/deepfake-detection-project/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/deepfake-detection-project/discussions)
 
