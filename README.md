@@ -284,8 +284,8 @@ This project is designed for educational and research purposes. If you use this 
 ## 📞 Support
 
 - 📧 Email: komalbishnoi87@gmail.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/deepfake-detection-project/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/deepfake-detection-project/discussions)
+- 🐛 Issues: [GitHub Issues](https://github.com/komal2918/deepfake-detection-project/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/komal2918/deepfake-detection-project/discussions)
 
 ---
 
