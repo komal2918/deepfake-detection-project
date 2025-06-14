@@ -13,7 +13,6 @@ ENV/
 .ipynb_checkpoints
 
 # Exclude duplicate/unnecessary model files (keep only the 3 required ones)
-models/FINAL_VisionTransformer_99.92acc_20250613_114100.pth
 models/FINAL_VisionTransformer_99.84acc_20250613_110949.pth
 models/best_vision_transformer_model.pth
 models/best_xception_model.pth
