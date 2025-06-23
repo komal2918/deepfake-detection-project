@@ -247,7 +247,7 @@ def create_confusion_matrix_plot():
         specs=[[{"type": "heatmap"}, {"type": "heatmap"}, {"type": "heatmap"}]]
     )
     
-    for i, (model_name, data) in enumerate(models_data.items()):
+    for i, (model_name, data) in enumerate(models_data.items(), 1):
         confusion_matrix = [[data['TN'], data['FP']], [data['FN'], data['TP']]]
         
         fig.add_trace(
