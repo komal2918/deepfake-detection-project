@@ -30,11 +30,11 @@ def download_model(url, filename):
         st.error(f"❌ Error downloading {filename}: {str(e)}")
         return None
 
-# Model URLs (you would upload your models to Google Drive/Dropbox/etc.)
+# Model URLs - Google Drive direct download links
 MODEL_URLS = {
-    'FINAL_VisionTransformer_99.92acc_20250613_114100.pth': 'YOUR_GOOGLE_DRIVE_LINK_HERE',
-    'FINAL_Xception_99.26acc_20250614_021320.pth': 'YOUR_GOOGLE_DRIVE_LINK_HERE',
-    'FINAL_EfficientNet_B3_99.11acc_20250612_121115.pth': 'YOUR_GOOGLE_DRIVE_LINK_HERE'
+    'FINAL_VisionTransformer_99.92acc_20250613_114100.pth': 'https://drive.google.com/uc?export=download&id=1bi39ctJ-Yv2XGfr6eN7PRGwUbGGmjjg5',
+    'FINAL_Xception_99.26acc_20250614_021320.pth': 'https://drive.google.com/uc?export=download&id=1f1ynbqJSqWaszLz42xi0rvGgG_k8YKFX',
+    'FINAL_EfficientNet_B3_99.11acc_20250612_121115.pth': 'https://drive.google.com/uc?export=download&id=1DpXYknk-7DDK5-v4ZKcde8uVFrI0VuEJ'
 }
 
 def ensure_models_downloaded():
