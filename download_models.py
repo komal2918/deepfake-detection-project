@@ -57,11 +57,11 @@ def download_model(url, filename):
             model_path.unlink()  # Clean up partial download
         return None
 
-# Model URLs - Google Drive direct download links with confirm parameter for large files
+# Model URLs - Alternative Google Drive format to bypass virus scan
 MODEL_URLS = {
-    'FINAL_VisionTransformer_99.92acc_20250613_114100.pth': 'https://drive.google.com/uc?export=download&id=1bi39ctJ-Yv2XGfr6eN7PRGwUbGGmjjg5&confirm=t',
-    'FINAL_Xception_99.26acc_20250614_021320.pth': 'https://drive.google.com/uc?export=download&id=1f1ynbqJSqWaszLz42xi0rvGgG_k8YKFX&confirm=t',
-    'FINAL_EfficientNet_B3_99.11acc_20250612_121115.pth': 'https://drive.google.com/uc?export=download&id=1DpXYknk-7DDK5-v4ZKcde8uVFrI0VuEJ&confirm=t'
+    'FINAL_VisionTransformer_99.92acc_20250613_114100.pth': 'https://drive.google.com/u/0/uc?id=1bi39ctJ-Yv2XGfr6eN7PRGwUbGGmjjg5&export=download&confirm=t',
+    'FINAL_Xception_99.26acc_20250614_021320.pth': 'https://drive.google.com/u/0/uc?id=1f1ynbqJSqWaszLz42xi0rvGgG_k8YKFX&export=download&confirm=t',
+    'FINAL_EfficientNet_B3_99.11acc_20250612_121115.pth': 'https://drive.google.com/u/0/uc?id=1DpXYknk-7DDK5-v4ZKcde8uVFrI0VuEJ&export=download&confirm=t'
 }
 
 def ensure_models_downloaded():
