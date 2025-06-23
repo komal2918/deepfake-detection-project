@@ -12,11 +12,8 @@ ENV/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Exclude duplicate/unnecessary model files (keep only the 3 required ones)
-models/FINAL_VisionTransformer_99.84acc_20250613_110949.pth
-models/best_vision_transformer_model.pth
-models/best_xception_model.pth
-models/best_efficientnet_b3_model.pth
+# Exclude all model files
+models/*.pth
 
 # IDE
 .vscode/

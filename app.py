@@ -15,6 +15,7 @@ import zipfile
 import os
 import json
 from datetime import datetime
+from download_models import ensure_models_downloaded, download_model, MODEL_URLS
 
 # Configure page
 st.set_page_config(
@@ -181,6 +182,11 @@ def load_model(model_name):
         config = MODEL_CONFIGS[model_name]
         model = config['class']()
         
+        # Ensure model is downloaded first
+        model_filename = os.path.basename(config['path'])
+        if model_filename in MODEL_URLS and MODEL_URLS[model_filename] != 'https://drive.google.com/drive/folders/1xZ4MlNYGhjBpGG_XO-33IvzcCVhhBaE1?usp=sharing':
+            download_model(MODEL_URLS[model_filename], model_filename)
+        
         if os.path.exists(config['path']):
             device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
             
@@ -198,14 +204,15 @@ def load_model(model_name):
                 st.success(f"✅ Loaded {model_name} model weights")
             
             model.eval()
-            model.to(device)
-            return model, device
+            return model
         else:
-            st.error(f"Model file not found: {config['path']}")
-            return None, None
+            st.error(f"❌ Model file not found: {config['path']}")
+            st.info("Please ensure the model files are properly uploaded to cloud storage and the download URLs are configured.")
+            return None
+            
     except Exception as e:
-        st.error(f"Error loading model {model_name}: {str(e)}")
-        return None, None
+        st.error(f"❌ Error loading {model_name}: {str(e)}")
+        return None
 
 def predict_image(model, image, device, transform):
     """Make prediction on a single image"""
@@ -240,7 +247,7 @@ def create_confusion_matrix_plot():
         specs=[[{"type": "heatmap"}, {"type": "heatmap"}, {"type": "heatmap"}]]
     )
     
-    for i, (model_name, data) in enumerate(models_data.items(), 1):
+    for i, (model_name, data) in enumerate(models_data.items()):
         confusion_matrix = [[data['TN'], data['FP']], [data['FN'], data['TP']]]
         
         fig.add_trace(
@@ -350,11 +357,11 @@ def main():
                 with col2:
                     if st.button("🔍 Analyze Image", key="single_analyze"):
                         with st.spinner(f"Analyzing with {selected_model}..."):
-                            model, device = load_model(selected_model)
+                            model = load_model(selected_model)
                             if model is not None:
                                 transform = get_transform()
                                 predicted_class, confidence, probabilities = predict_image(
-                                    model, image, device, transform
+                                    model, image, torch.device('cuda'), transform
                                 )
                                 
                                 if predicted_class is not None:
@@ -396,7 +403,7 @@ def main():
             
             if uploaded_files:
                 if st.button("🔍 Analyze All Images", key="batch_analyze"):
-                    model, device = load_model(selected_model)
+                    model = load_model(selected_model)
                     if model is not None:
                         transform = get_transform()
                         results = []
@@ -405,7 +412,7 @@ def main():
                         for i, uploaded_file in enumerate(uploaded_files):
                             image = Image.open(uploaded_file)
                             predicted_class, confidence, probabilities = predict_image(
-                                model, image, device, transform
+                                model, image, torch.device('cuda'), transform
                             )
                             
                             results.append({
