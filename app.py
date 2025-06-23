@@ -204,6 +204,8 @@ def load_model(model_name):
                 st.success(f"✅ Loaded {model_name} model weights")
             
             model.eval()
+            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            model.to(device)
             return model
         else:
             st.error(f"❌ Model file not found: {config['path']}")
@@ -360,8 +362,9 @@ def main():
                             model = load_model(selected_model)
                             if model is not None:
                                 transform = get_transform()
+                                device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
                                 predicted_class, confidence, probabilities = predict_image(
-                                    model, image, torch.device('cuda'), transform
+                                    model, image, device, transform
                                 )
                                 
                                 if predicted_class is not None:
@@ -411,8 +414,9 @@ def main():
                         progress_bar = st.progress(0)
                         for i, uploaded_file in enumerate(uploaded_files):
                             image = Image.open(uploaded_file)
+                            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
                             predicted_class, confidence, probabilities = predict_image(
-                                model, image, torch.device('cuda'), transform
+                                model, image, device, transform
                             )
                             
                             results.append({
